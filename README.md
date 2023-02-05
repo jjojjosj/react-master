@@ -27,3 +27,11 @@ const sayHello = (playerObj: PlayerShape) =>
 sayHello({ name: "nico", age: 12 });
 sayHello({ name: "hi", age: 12 });
 ```
+
+<https://fonts.google.com/specimen/Source+Sans+Pro?query=source+sans+pro>
+
+<https://flatuicolors.com/palette/gb>
+
+<https://api.coinpaprika.com/v1/coins>
+
+<https://coinicons-api.vercel.app/api/icon/>
