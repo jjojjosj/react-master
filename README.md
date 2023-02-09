@@ -38,4 +38,8 @@ sayHello({ name: "hi", age: 12 });
 
 ```{bash}
 npm install --save react-apexcharts apexcharts
+
+npm install react-helmet
+
+npm i --save-dev @types/react-helmet
 ```
