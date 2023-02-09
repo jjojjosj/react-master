@@ -188,6 +188,13 @@ function Coin() {
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
+        <Link
+          to={{
+            pathname: `/`,
+          }}
+        >
+          <button>🏠</button>
+        </Link>
       </Header>
       {loading ? (
         <Loader>"Loading..."</Loader>
