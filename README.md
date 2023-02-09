@@ -35,3 +35,7 @@ sayHello({ name: "hi", age: 12 });
 <https://api.coinpaprika.com/v1/coins>
 
 <https://coinicons-api.vercel.app/api/icon/>
+
+```{bash}
+npm install --save react-apexcharts apexcharts
+```
