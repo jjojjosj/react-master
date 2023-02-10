@@ -36,7 +36,7 @@ const Header = styled.header`
   align-items: center;
 `;
 
-const Overview = styled.div`
+export const Overview = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.5);
@@ -44,7 +44,7 @@ const Overview = styled.div`
   border-radius: 10px;
 `;
 
-const OverviewItem = styled.div`
+export const OverviewItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
