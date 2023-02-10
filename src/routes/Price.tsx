@@ -61,6 +61,22 @@ function Price({ coinId }: PriceProps) {
               ))}
             </ul>
           </ColumnPrice>
+          <ColumnPrice>
+            <ul>
+              <li>시가</li>
+              {data?.map((price) => (
+                <li>{parseFloat(price.open)}</li>
+              ))}
+            </ul>
+          </ColumnPrice>
+          <ColumnPrice>
+            <ul>
+              <li>종가</li>
+              {data?.map((price) => (
+                <li>{parseFloat(price.close)}</li>
+              ))}
+            </ul>
+          </ColumnPrice>
         </>
       )}
     </div>
