@@ -16,6 +16,7 @@ interface IHistorical {
   volume: string;
   market_cap: number;
 }
+
 function Chart({ coinId }: ChartProps) {
   const { isLoading, data } = useQuery<IHistorical[]>(
     ["ohlcv", coinId],
