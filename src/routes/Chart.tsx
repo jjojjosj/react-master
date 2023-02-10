@@ -21,7 +21,7 @@ function Chart({ coinId }: ChartProps) {
     ["ohlcv", coinId],
     () => fetchCoinHistory(coinId),
     {
-      refetchInterval: 10000,
+      refetchInterval: 60000,
     }
   );
   return (
@@ -51,15 +51,43 @@ function Chart({ coinId }: ChartProps) {
               },
               background: "transparent",
             },
-            grid: { show: false },
+            grid: {
+              show: true,
+              borderColor: "#ffffff",
+              strokeDashArray: 2,
+              xaxis: {
+                lines: {
+                  show: false,
+                },
+              },
+            },
             stroke: {
               curve: "smooth",
               width: 4,
             },
             xaxis: {
-              axisBorder: { show: false },
-              axisTicks: { show: false },
-              labels: { show: false },
+              axisBorder: {
+                show: true,
+                color: "#ffffff",
+                offsetX: 0,
+                offsetY: 0,
+              },
+              axisTicks: {
+                show: true,
+                borderType: "solid",
+                color: "#ffffff",
+                height: 6,
+                offsetX: 0,
+                offsetY: 0,
+              },
+              labels: {
+                datetimeFormatter: {
+                  year: "yyyy",
+                  month: "yy MM",
+                  day: "MM/dd",
+                  hour: "HH:mm",
+                },
+              },
               type: "datetime",
               categories: Array.isArray(data)
                 ? data?.map((price) =>
@@ -77,7 +105,26 @@ function Chart({ coinId }: ChartProps) {
                 formatter: (value) => `$ ${value.toFixed(3)}`,
               },
             },
-            yaxis: { show: false },
+            yaxis: {
+              axisBorder: {
+                show: true,
+                color: "#ffffff",
+                offsetX: 0,
+                offsetY: 0,
+              },
+              axisTicks: {
+                show: true,
+                color: "#ffffff",
+                offsetX: 0,
+                offsetY: 0,
+              },
+              labels: {
+                show: true,
+                formatter: (value) => {
+                  return value.toFixed(0);
+                },
+              },
+            },
           }}
         />
       )}
