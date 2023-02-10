@@ -7,7 +7,6 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import Chart from "./Chart";
 import Price from "./Price";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
