@@ -31,94 +31,43 @@ function Chart({ coinId }: ChartProps) {
         "Loading chart..."
       ) : (
         <ApexChart
-          type="line"
+          type="candlestick"
           series={[
             {
-              name: "Price",
               data: Array.isArray(data)
-                ? data?.map((price) => parseFloat(price.close)) ?? []
+                ? data?.map((price) => ({
+                    x: new Date(price.time_close * 1000).toISOString(),
+                    y: [
+                      parseFloat(price.open),
+                      parseFloat(price.high),
+                      parseFloat(price.low),
+                      parseFloat(price.close),
+                    ],
+                  }))
                 : [],
             },
           ]}
           options={{
+            title: { text: "CandleStick Chart" },
             theme: {
               mode: "dark",
             },
+            grid: {
+              show: true,
+              strokeDashArray: 2,
+            },
             chart: {
-              height: 300,
+              height: 350,
               width: 500,
               toolbar: {
                 show: false,
               },
               background: "transparent",
             },
-            grid: {
-              show: true,
-              borderColor: "#ffffff",
-              strokeDashArray: 2,
-              xaxis: {
-                lines: {
-                  show: false,
-                },
-              },
-            },
-            stroke: {
-              curve: "smooth",
-              width: 4,
-            },
             xaxis: {
-              axisBorder: {
-                show: true,
-                color: "#ffffff",
-                offsetX: 0,
-                offsetY: 0,
-              },
-              axisTicks: {
-                show: true,
-                borderType: "solid",
-                color: "#ffffff",
-                height: 6,
-                offsetX: 0,
-                offsetY: 0,
-              },
-              labels: {
-                datetimeFormatter: {
-                  year: "yyyy",
-                  month: "yy MM",
-                  day: "MM/dd",
-                  hour: "HH:mm",
-                },
-              },
               type: "datetime",
-              categories: Array.isArray(data)
-                ? data?.map((price) =>
-                    new Date(price.time_close * 1000).toISOString()
-                  ) ?? []
-                : [],
-            },
-            fill: {
-              type: "gradient",
-              gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
-            },
-            colors: ["#0fbcf9"],
-            tooltip: {
-              y: {
-                formatter: (value) => `$ ${value.toFixed(3)}`,
-              },
             },
             yaxis: {
-              axisBorder: {
-                show: true,
-                color: "#ffffff",
-                offsetX: 0,
-                offsetY: 0,
-              },
-              axisTicks: {
-                show: true,
-                color: "#ffffff",
-                offsetX: 0,
-                offsetY: 0,
-              },
               labels: {
                 show: true,
                 formatter: (value) => {
