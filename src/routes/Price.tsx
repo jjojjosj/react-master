@@ -30,19 +30,19 @@ function Price({ coinId, priceQuotesUSD }: PriceProps) {
       <Overview>
         <OverviewItem>
           <span>Change_1h</span>
-          <span>{priceQuotesUSD?.percent_change_1h}</span>
-        </OverviewItem>
-        <OverviewItem>
-          <span>Change_6h</span>
-          <span>{priceQuotesUSD?.percent_change_6h}</span>
-        </OverviewItem>
-        <OverviewItem>
-          <span>Change_12h</span>
-          <span>{priceQuotesUSD?.percent_change_12h}</span>
+          <span>{priceQuotesUSD?.percent_change_1h}%</span>
         </OverviewItem>
         <OverviewItem>
           <span>Change_24h</span>
-          <span>{priceQuotesUSD?.percent_change_24h}</span>
+          <span>{priceQuotesUSD?.percent_change_24h}%</span>
+        </OverviewItem>
+        <OverviewItem>
+          <span>Change_7d</span>
+          <span>{priceQuotesUSD?.percent_change_7d}%</span>
+        </OverviewItem>
+        <OverviewItem>
+          <span>Change_30d</span>
+          <span>{priceQuotesUSD?.percent_change_30d}%</span>
         </OverviewItem>
       </Overview>
     </div>
