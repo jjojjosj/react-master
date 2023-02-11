@@ -38,6 +38,7 @@ const Coin = styled.li`
 `;
 
 const Title = styled.h1`
+  font-size: 32px;
   color: ${(props) => props.theme.accentColor};
 `;
 
@@ -69,7 +70,7 @@ function Coins() {
         <title>코인 트래커</title>
       </Helmet>
       <Header>
-        <Title>코인 트래커</Title>
+        <Title>코인 트래커 by jjojjosj</Title>
       </Header>
       {isLoading ? (
         <Loader>"Loading..."</Loader>
