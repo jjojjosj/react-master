@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { Overview, OverviewItem } from "./Coin";
 
 interface PriceProps {
