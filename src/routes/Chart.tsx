@@ -71,7 +71,7 @@ function Chart({ coinId }: ChartProps) {
               labels: {
                 show: true,
                 formatter: (value) => {
-                  return value.toFixed(0);
+                  return value < 10 ? value.toFixed(4) : value.toFixed(2);
                 },
               },
             },
