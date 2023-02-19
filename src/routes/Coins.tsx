@@ -19,8 +19,8 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.cardBgColor};
+  color: ${(props) => props.theme.textColor};
 
   border-radius: 15px;
   margin-bottom: 10px;
@@ -62,7 +62,10 @@ interface ICoin {
   is_active: boolean;
   type: "string";
 }
-function Coins() {
+
+interface ICoinsProps {}
+
+function Coins({}: ICoinsProps) {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   return (
     <Container>

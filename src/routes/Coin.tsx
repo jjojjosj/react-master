@@ -146,7 +146,10 @@ interface PriceData {
     };
   };
 }
-function Coin() {
+
+interface ICoinProps {}
+
+function Coin({}: ICoinProps) {
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
