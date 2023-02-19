@@ -152,6 +152,14 @@ npm i --save-dev @types/react-helmet
 
 ---
 
+## 7. recoil
+
+변수를 여러 개의 파일/페이지/함수 등에서 사용할 때, 연속해서 변수를 전달,전달,전달하기보다는 하나의 전역변수 형태로 만들고 가져다 쓰는 것이 효율적이다. Recoil atom을 생성해서 이런 걸 가능하게 한다.
+
+`npm install recoil`
+
+---
+
 ## 99. 유용한 링크들
 
 [폰트 고를 때 유용한 사이트 - fonts.google.com](https://fonts.google.com/specimen/Source+Sans+Pro?query=source+sans+pro)
