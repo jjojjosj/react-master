@@ -158,6 +158,12 @@ npm i --save-dev @types/react-helmet
 
 `npm install recoil` 로 설치한다. `useRecoilValue()` 함수를 통해 필요한 변수를 불러오고, `useSetRecoilValue()`를 통해 필요한 변수를 업데이트한다.
 
+## 8. react-hook-form
+
+폼에 들어갈 인풋과 그에 대응하는 함수를 만들기 위해서는 onSubmit, onChange등을 선언해야 하는데 폼이 많아질 수록 그에 따른 작업량이 늘어나고, Error 핸들링을 해야하는 경우에는 코드가 더 길어진다. 이를 쉽게 해결하게 해주는 react-hook-form 패키지를 사용한다.
+
+`npm install react-hook-form`으로 설치한다.
+
 ## 99. 유용한 링크들
 
 [폰트 고를 때 유용한 사이트 - fonts.google.com](https://fonts.google.com/specimen/Source+Sans+Pro?query=source+sans+pro)
