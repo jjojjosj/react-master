@@ -164,6 +164,10 @@ npm i --save-dev @types/react-helmet
 
 `npm install react-hook-form`으로 설치한다.
 
+## 9. react-beautiful-dnd
+
+드래그앤드롭을 멋지게 사용할 수 있게 하는 패키지로, `npm install react-beautiful-dnd`로 설치한다.
+
 ## 99. 유용한 링크들
 
 [폰트 고를 때 유용한 사이트 - fonts.google.com](https://fonts.google.com/specimen/Source+Sans+Pro?query=source+sans+pro)
