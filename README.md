@@ -166,7 +166,7 @@ npm i --save-dev @types/react-helmet
 
 ## 9. react-beautiful-dnd
 
-드래그앤드롭을 멋지게 사용할 수 있게 하는 패키지로, `npm install react-beautiful-dnd`로 설치한다.
+드래그앤드롭을 멋지게 사용할 수 있게 하는 패키지로, `npm install react-beautiful-dnd`로 설치한다. `npm i --save-dev @types/react-beautiful-dnd`도 해야 한다.
 
 ## 99. 유용한 링크들
 
