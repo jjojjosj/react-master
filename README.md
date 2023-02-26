@@ -14,7 +14,10 @@
 4. [react-query](#4-react-query)
 5. [apexchart.js](#5-apexchartjs)
 6. [react-helmet](#6-react-helmet)
-7. [기타 유용한 링크](#99-유용한-링크들)
+7. [recoil](#7-recoil)
+8. [react-hook-form](#8-react-hook-form)
+9. [react-beautiful-dnd](#9-react-beautiful-dnd)
+10. [기타 유용한 링크](#99-유용한-링크들)
 
 ---
 
@@ -158,15 +161,21 @@ npm i --save-dev @types/react-helmet
 
 `npm install recoil` 로 설치한다. `useRecoilValue()` 함수를 통해 필요한 변수를 불러오고, `useSetRecoilValue()`를 통해 필요한 변수를 업데이트한다.
 
+---
+
 ## 8. react-hook-form
 
 폼에 들어갈 인풋과 그에 대응하는 함수를 만들기 위해서는 onSubmit, onChange등을 선언해야 하는데 폼이 많아질 수록 그에 따른 작업량이 늘어나고, Error 핸들링을 해야하는 경우에는 코드가 더 길어진다. 이를 쉽게 해결하게 해주는 react-hook-form 패키지를 사용한다.
 
 `npm install react-hook-form`으로 설치한다.
 
+---
+
 ## 9. react-beautiful-dnd
 
 드래그앤드롭을 멋지게 사용할 수 있게 하는 패키지로, `npm install react-beautiful-dnd`로 설치한다. `npm i --save-dev @types/react-beautiful-dnd`도 해야 한다.
+
+---
 
 ## 99. 유용한 링크들
 
