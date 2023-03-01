@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { toDoState } from "./atoms";
+import { IToDoState, toDoState } from "./atoms";
 import Board from "./Components/Board";
 import { Helmet } from "react-helmet";
 
@@ -57,6 +57,24 @@ function App() {
       });
     }
   };
+  const addBoard = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setToDos((allBoards) => {
+      const newEmptyBoard: IToDoState = { NewBoard: [] };
+      return {
+        ...allBoards,
+        ...newEmptyBoard,
+      };
+    });
+  };
+  const removeBoard = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    boardId: string
+  ) => {
+    setToDos((allBoards) => {
+      const { [boardId]: _, ...rest } = allBoards;
+      return { ...rest };
+    });
+  };
   return (
     <Wrapper>
       <Helmet>
@@ -65,8 +83,18 @@ function App() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Boards>
           {Object.keys(toDos).map((boardId) => (
-            <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
+            <>
+              <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
+              <button
+                onClick={(event) => {
+                  removeBoard(event, boardId);
+                }}
+              >
+                🗑️
+              </button>
+            </>
           ))}
+          <button onClick={addBoard}>➕</button>
         </Boards>
       </DragDropContext>
     </Wrapper>
