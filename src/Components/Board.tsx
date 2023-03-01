@@ -131,14 +131,14 @@ function Board({ toDos, boardId }: IBoardProps) {
               clickEditBoard(event, boardId);
             }}
           >
-            🛠️
+            🛠️Edit Board
           </button>
           <button
             onClick={(event) => {
               removeBoard(event, boardId);
             }}
           >
-            🗑️
+            🗑️Delete Board
           </button>
         </>
       ) : null}
