@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Title = styled.h2`
+const Title = styled.div`
   text-align: center;
   font-weight: 600;
   margin-bottom: 10px;
@@ -40,7 +41,30 @@ const Area = styled.div<IAreaProps>`
 
 const Form = styled.form`
   width: 100%;
+  padding: 2px 5px;
+  display: flex;
 `;
+
+const Input = styled.input`
+  padding: 2px 5px;
+  flex: 1;
+  border-radius: 5px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: block;
+`;
+
+const BoardMenu = styled.button`
+  margin-left: auto;
+`;
+
+const BoardEditForm = styled.form`
+  display: flex;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 18px;
+`;
+
 interface IBoardProps {
   toDos: ITodo[];
   boardId: string;
@@ -52,6 +76,8 @@ interface IForm {
 
 function Board({ toDos, boardId }: IBoardProps) {
   const setToDos = useSetRecoilState(toDoState);
+  const [showToggle, setToggle] = useState(false);
+  const [editing, setEditing] = useState(false);
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const onValid = ({ toDo }: IForm) => {
     const newToDo = {
@@ -66,11 +92,58 @@ function Board({ toDos, boardId }: IBoardProps) {
     });
     setValue("toDo", "");
   };
+  const onClickToggle = () => {
+    setToggle((prev) => !prev);
+  };
+  const toggleEdit = () => {
+    setEditing((prev) => !prev);
+  };
+  const removeBoard = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    boardId: string
+  ) => {
+    setToDos((allBoards) => {
+      const { [boardId]: _, ...rest } = allBoards;
+      return { ...rest };
+    });
+  };
+  const clickEditBoard = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    boardId: string
+  ) => {
+    setEditing((prev) => !prev);
+  };
   return (
     <Wrapper>
-      <Title>{boardId}</Title>
+      {editing ? (
+        <BoardEditForm>
+          <input placeholder={boardId} />
+          <BoardMenu onClick={toggleEdit}>Cancel</BoardMenu>
+        </BoardEditForm>
+      ) : (
+        <Title>{boardId}</Title>
+      )}
+      <button onClick={onClickToggle}>⋯</button>
+      {showToggle ? (
+        <>
+          <button
+            onClick={(event) => {
+              clickEditBoard(event, boardId);
+            }}
+          >
+            🛠️
+          </button>
+          <button
+            onClick={(event) => {
+              removeBoard(event, boardId);
+            }}
+          >
+            🗑️
+          </button>
+        </>
+      ) : null}
       <Form onSubmit={handleSubmit(onValid)}>
-        <input
+        <Input
           {...register("toDo", { required: true })}
           type="text"
           placeholder={`Add task on ${boardId}`}
