@@ -73,7 +73,7 @@ function Board({ toDos, boardId }: IBoardProps) {
         <input
           {...register("toDo", { required: true })}
           type="text"
-          placeholder={`Add tack on ${boardId}`}
+          placeholder={`Add task on ${boardId}`}
         />
       </Form>
       <Droppable droppableId={boardId}>
