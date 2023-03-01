@@ -67,6 +67,7 @@ function App() {
     }
   };
   const addBoard = ({ boardId }: IBoardName) => {
+    if (boardId in toDos) return;
     setToDos((allBoards) => {
       const newEmptyBoard: IToDoState = { [boardId]: [] };
       return {
