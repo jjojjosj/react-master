@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { IToDoState, toDoState } from "./atoms";
 import Board from "./Components/Board";
 import { Helmet } from "react-helmet";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,8 +24,15 @@ const Boards = styled.div`
   gap: 10px;
 `;
 
+interface IBoardName {
+  boardId: string;
+}
+
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
+  const [addingBoard, setToggle] = useState(false);
+  const { register, setValue, handleSubmit } = useForm<IBoardName>();
+
   const onDragEnd = (info: DropResult) => {
     const { destination, draggableId, source } = info;
     if (!destination) return;
@@ -57,23 +66,19 @@ function App() {
       });
     }
   };
-  const addBoard = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const addBoard = ({ boardId }: IBoardName) => {
     setToDos((allBoards) => {
-      const newEmptyBoard: IToDoState = { NewBoard: [] };
+      const newEmptyBoard: IToDoState = { [boardId]: [] };
       return {
         ...allBoards,
         ...newEmptyBoard,
       };
     });
+    setToggle((prev) => !prev);
+    setValue("boardId", "");
   };
-  const removeBoard = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    boardId: string
-  ) => {
-    setToDos((allBoards) => {
-      const { [boardId]: _, ...rest } = allBoards;
-      return { ...rest };
-    });
+  const onClickAddBoard = () => {
+    setToggle((prev) => !prev);
   };
   return (
     <Wrapper>
@@ -83,18 +88,19 @@ function App() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Boards>
           {Object.keys(toDos).map((boardId) => (
-            <>
-              <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
-              <button
-                onClick={(event) => {
-                  removeBoard(event, boardId);
-                }}
-              >
-                🗑️
-              </button>
-            </>
+            <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
           ))}
-          <button onClick={addBoard}>➕</button>
+          {addingBoard ? (
+            <form onSubmit={handleSubmit(addBoard)}>
+              <input
+                {...register("boardId", { required: true })}
+                type="text"
+                placeholder="Enter new board name"
+              />
+            </form>
+          ) : (
+            <button onClick={onClickAddBoard}>➕</button>
+          )}
         </Boards>
       </DragDropContext>
     </Wrapper>
