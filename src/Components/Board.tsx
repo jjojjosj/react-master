@@ -56,6 +56,8 @@ const Input = styled.input`
 
 const BoardMenu = styled.button`
   margin-left: auto;
+  padding: 0px;
+  margin: 0px 5px 10px auto;
 `;
 
 const BoardEditForm = styled.form`
@@ -63,6 +65,14 @@ const BoardEditForm = styled.form`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 18px;
+  input {
+    box-sizing: border-box;
+    padding: 1px 6px;
+  }
+`;
+
+const EditWrapper = styled.div`
+  display: flex;
 `;
 
 interface IBoardProps {
@@ -149,7 +159,7 @@ function Board({ toDos, boardId }: IBoardProps) {
   return (
     <Wrapper>
       {editing ? (
-        <>
+        <EditWrapper>
           <BoardEditForm
             onSubmit={(event) => {
               renameBoard(event, boardId);
@@ -158,7 +168,7 @@ function Board({ toDos, boardId }: IBoardProps) {
             <input type="text" placeholder={boardId} onChange={handleInput} />
           </BoardEditForm>
           <BoardMenu onClick={toggleEdit}>Cancel</BoardMenu>
-        </>
+        </EditWrapper>
       ) : (
         <Title>{boardId}</Title>
       )}
