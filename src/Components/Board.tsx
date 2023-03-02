@@ -78,6 +78,7 @@ function Board({ toDos, boardId }: IBoardProps) {
   const setToDos = useSetRecoilState(toDoState);
   const [showToggle, setToggle] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [newBoardName, setNewBoardName] = useState("");
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const onValid = ({ toDo }: IForm) => {
     const newToDo = {
@@ -107,19 +108,57 @@ function Board({ toDos, boardId }: IBoardProps) {
       return { ...rest };
     });
   };
+
   const clickEditBoard = (
     event: React.MouseEvent<HTMLButtonElement>,
     boardId: string
   ) => {
     setEditing((prev) => !prev);
   };
+
+  const renameBoard = (event: React.FormEvent, boardId: string) => {
+    event.preventDefault();
+    setToDos((allBoards) => {
+      const copyBoards = allBoards;
+      const renameMap = { [boardId]: newBoardName };
+
+      const newBoardsArray = [copyBoards].map((obj) =>
+        Object.fromEntries(
+          Object.entries(obj).map(([key, value]) => [
+            renameMap[key] ?? key,
+            value,
+          ])
+        )
+      )[0];
+      const newBoards = { ...newBoardsArray };
+      return {
+        ...newBoards,
+      };
+    });
+    setNewBoardName("");
+    setEditing((prev) => !prev);
+  };
+
+  const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: { value },
+    } = event;
+    setNewBoardName(value);
+  };
+
   return (
     <Wrapper>
       {editing ? (
-        <BoardEditForm>
-          <input placeholder={boardId} />
+        <>
+          <BoardEditForm
+            onSubmit={(event) => {
+              renameBoard(event, boardId);
+            }}
+          >
+            <input type="text" placeholder={boardId} onChange={handleInput} />
+          </BoardEditForm>
           <BoardMenu onClick={toggleEdit}>Cancel</BoardMenu>
-        </BoardEditForm>
+        </>
       ) : (
         <Title>{boardId}</Title>
       )}
